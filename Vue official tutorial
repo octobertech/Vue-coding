@@ -1,0 +1,101 @@
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!-- At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax: -->
+<div id="app">
+  {{ message }}
+</div>
+
+<!-- In addition to text interpolation, we can also bind element attributes like this: -->
+<div id="app-2">
+  <span v-bind:title="message">
+    Hover your mouse over me for a few seconds
+    to see my dynamically bound title!
+  </span>
+</div>
+
+<!-- It’s easy to toggle the presence of an element, too: -->
+<div id="app-3">
+  <span v-if="seen">Now you see me</span>
+</div>
+
+<!-- "v-for" directive can be used for displaying a list of items using the data from an Array: -->
+<div id="app-4">
+  <ol>
+    <li v-for="todo in todos">
+      {{ todo.text }}
+    </li>
+  </ol>
+</div>
+
+<!-- we can use the v-on directive to attach event listeners that invoke methods on our Vue instances: -->
+<div id="app-5">
+  <p>{{ message }}</p>
+  <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+
+<!-- Vue also provides the v-model directive that makes two-way binding between form input and app state a breeze: -->
+<div id="app-6">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>
+
+
+<script>
+// At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+
+// In addition to text interpolation, we can also bind element attributes like this:
+var app2 = new Vue({
+  el: '#app-2',
+  data: {
+    message: 'You loaded this page on ' + new Date().toLocaleString()
+  }
+})
+
+// It’s easy to toggle the presence of an element, too:
+var app3 = new Vue({
+  el: '#app-3',
+  data: {
+    seen: true
+  }
+})
+
+// "v-for" directive can be used for displaying a list of items using the data from an Array:
+var app4 = new Vue({
+  el: '#app-4',
+  data: {
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ]
+  }
+})
+
+// we can use the v-on directive to attach event listeners that invoke methods on our Vue instances:
+var app5 = new Vue({
+  el: '#app-5',
+  data: {
+    message: 'Hello Vue.js!'
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
+  }
+})
+
+// Vue also provides the v-model directive that makes two-way binding between form input and app state a breeze:
+var app6 = new Vue({
+  el: '#app-6',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+</script>
