@@ -1,1 +1,1 @@
-# Vue-coding
+# Vue.js coding examples
