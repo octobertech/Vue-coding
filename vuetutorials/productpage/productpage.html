@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Product App</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="nav-bar"></div>
+
+	<div id="app">
+		<div class="product">
+			<div class="product-image">
+				<img v-bind:src="image">
+			</div>
+			<div class="product-info">
+				<h1>{{ product }}</h1>
+				<span v-if="onSale">On Sale!</span>
+				<p v-if="inventory > 10">In Stock</p>
+				<p v-else-if="inventory <= 10 && inventory > 0">Almost Sold Out!</p>
+				<p v-else>Out of Stock</p>
+				<p v-show="inStock">In Stock (shows if in stock otherwise hidden)</p>
+
+				<br>
+
+				<p>{{ desc }}</p>
+
+				<ul>
+					<li v-for="detail in details">{{ detail }}</li>
+				</ul>
+
+		        <div v-for="variant in variants" 
+		             :key="variant.variantId"
+		             class="color-box"
+		             :style="{ backgroundColor: variant.variantColor }"
+		        	 @mouseover="updateProduct(variant.variantImage)">
+		        </div>
+
+		        <ul >
+					<li v-for="size in sizes" :key="size.sizeId">{{ size.sizeName }}</li>
+				</ul>
+
+				<button v-on:click="addToCart" 
+				        :disabled="!inStock"
+				        :class="{ disabledButton: !inStock }">Add to Cart</button>
+				<button @click="deleteFromCart">Delete from Cart</button>
+
+			<div class="cart">
+				<p>Cart({{cart}})</p>
+			</div>
+
+
+			</div>
+
+			
+		
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="main.js"></script>
+</body>
+</html>
